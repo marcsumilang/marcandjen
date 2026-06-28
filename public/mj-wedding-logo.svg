@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Marc and Jen wedding monogram</title>
+  <desc id="desc">An elegant MJ wedding crest with botanical line art.</desc>
+  <defs>
+    <style>
+      .ring{fill:#FCF8EF;stroke:#AD8A52;stroke-width:2}
+      .soft{fill:none;stroke:#D9C096;stroke-width:1.1}
+      .sprig{fill:none;stroke:#AD8A52;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+      .leaf{fill:#C9A063}
+      .letter{fill:#54402F;font-family:"Cormorant Garamond", Georgia, serif;font-size:58px;font-weight:500}
+      .amp{fill:#AD8A52;font-family:"Cormorant Garamond", Georgia, serif;font-size:18px;font-style:italic}
+      .date{fill:#7A5C2E;font-family:Jost, Arial, sans-serif;font-size:8px;letter-spacing:2.4px}
+    </style>
+  </defs>
+  <circle class="ring" cx="80" cy="80" r="70"/>
+  <circle class="soft" cx="80" cy="80" r="61"/>
+  <path class="sprig" d="M42 101c-10-9-14-22-9-33 3-7 9-12 16-15"/>
+  <path class="sprig" d="M118 101c10-9 14-22 9-33-3-7-9-12-16-15"/>
+  <path class="sprig" d="M38 84c-7-1-12-5-15-10"/>
+  <path class="sprig" d="M122 84c7-1 12-5 15-10"/>
+  <ellipse class="leaf" cx="42" cy="63" rx="4" ry="8" transform="rotate(42 42 63)"/>
+  <ellipse class="leaf" cx="34" cy="77" rx="3.5" ry="7" transform="rotate(69 34 77)"/>
+  <ellipse class="leaf" cx="118" cy="63" rx="4" ry="8" transform="rotate(-42 118 63)"/>
+  <ellipse class="leaf" cx="126" cy="77" rx="3.5" ry="7" transform="rotate(-69 126 77)"/>
+  <text class="letter" x="49" y="92">M</text>
+  <text class="letter" x="88" y="92">J</text>
+  <text class="amp" x="74" y="81">&amp;</text>
+  <path class="soft" d="M54 111h52"/>
+  <text class="date" x="80" y="126" text-anchor="middle">08 14 2026</text>
+</svg>
