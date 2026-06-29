@@ -215,14 +215,16 @@
   }
   .editorial-cover{
     position:relative;
-    min-height:min(760px, 88vh);
-    margin:0 clamp(1rem,4vw,3rem) var(--sp-5);
+    min-height:min(620px, 72vh);
+    width:calc(100% - clamp(2rem,8vw,6rem));
+    max-width:1480px;
+    margin:0 auto var(--sp-5);
     border:1px solid rgba(173,138,82,.28);
     overflow:hidden;
     background:var(--paper);
     box-shadow:0 38px 90px -58px rgba(84,64,46,.55);
   }
-  .editorial-cover img{width:100%;height:100%;min-height:min(760px,88vh);object-fit:cover;object-position:center top;filter:brightness(.74) saturate(.92);}
+  .editorial-cover img{width:100%;height:100%;min-height:min(620px,72vh);object-fit:cover;object-position:center center;filter:brightness(.74) saturate(.92);}
   .editorial-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(252,248,239,.06), transparent 42%, rgba(64,45,34,.58));}
   .editorial-cover-copy{position:absolute;left:clamp(1.5rem,6vw,4rem);right:clamp(1.5rem,6vw,4rem);bottom:clamp(2rem,6vw,4rem);z-index:1;max-width:720px;}
   .editorial-cover-copy .label{color:var(--gold);}
@@ -321,8 +323,8 @@
   .editorial-ring-inner{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center;}
   .editorial-ring-copy h3{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:clamp(2rem,4.6vw,3.7rem);line-height:1.08;color:var(--umber);}
   .editorial-ring-copy p{max-width:34ch;margin:1.25rem 0 0;font-family:var(--font-label);font-size:.82rem;line-height:1.9;letter-spacing:.04em;color:var(--taupe);}
-  .editorial-panorama{position:relative;width:100%;height:clamp(320px,52vw,620px);margin:var(--sp-5) 0 0;padding:0;border:0;display:block;overflow:hidden;background:var(--paper);cursor:zoom-in;}
-  .editorial-panorama img{object-position:center 20%;filter:brightness(.92);}
+  .editorial-panorama{position:relative;width:min(100%,1280px);height:clamp(360px,48vw,640px);margin:var(--sp-5) auto 0;padding:0;border:0;display:block;overflow:hidden;background:var(--paper);cursor:zoom-in;}
+  .editorial-panorama img{object-position:center center;filter:brightness(.92);}
   .editorial-panorama span{position:absolute;right:clamp(1.25rem,5vw,3rem);bottom:clamp(1.25rem,4vw,2.5rem);font-family:var(--font-label);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(252,248,239,.86);text-shadow:0 2px 16px rgba(62,48,36,.6);}
   .editorial-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-block:var(--sp-5);}
   .editorial-strip .editorial-frame{min-height:clamp(180px,22vw,270px);}
@@ -339,12 +341,44 @@
   .lightbox-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;}
   @media (max-width:760px){
     .editorial-story{padding-top:var(--sp-4);}
-    .editorial-cover{min-height:620px;margin-inline:.75rem;}
-    .editorial-cover img{min-height:620px;}
+    .editorial-cover{width:calc(100% - 1.5rem);min-height:460px;margin-bottom:var(--sp-4);}
+    .editorial-cover img{min-height:460px;}
     .editorial-grid-featured,.editorial-grid-reverse,.editorial-grid-halves,.editorial-grid-thirds,.editorial-ring-inner,.editorial-quote,.editorial-strip{grid-template-columns:1fr;}
     .editorial-grid-featured,.editorial-grid-reverse{grid-template-rows:none;}
     .editorial-grid-featured .editorial-feature,.editorial-grid-reverse .editorial-feature{grid-row:auto;grid-column:auto;}
     .editorial-frame{min-height:clamp(240px,76vw,420px);}
+    .editorial-chapter .editorial-grid{
+      display:flex;
+      gap:10px;
+      margin-inline:calc(clamp(1.25rem,5vw,3rem) * -1);
+      padding:0 clamp(1.25rem,5vw,3rem) 0.8rem;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+    }
+    .editorial-chapter .editorial-grid::-webkit-scrollbar{display:none;}
+    .editorial-chapter .editorial-frame{
+      flex:0 0 min(84vw,380px);
+      min-height:clamp(430px,120vw,560px);
+      scroll-snap-align:center;
+    }
+    .editorial-chapter .editorial-feature,
+    .editorial-chapter .editorial-feature-card,
+    .editorial-chapter .editorial-hero-card{
+      min-height:clamp(430px,120vw,560px);
+    }
+    .editorial-panorama{
+      width:calc(100% - 1.5rem);
+      height:clamp(320px,92vw,460px);
+    }
+    .editorial-panorama span{
+      right:1rem;
+      bottom:1rem;
+      max-width:calc(100% - 2rem);
+      white-space:normal;
+      text-align:right;
+    }
     .editorial-quote div:first-child{text-align:left;}
     .editorial-quote > i{width:120px;height:1px;}
     .lightbox{padding:4.5rem 1rem;}
