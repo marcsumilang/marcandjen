@@ -1,4 +1,5 @@
-﻿const nav = document.getElementById('nav');
+function initWeddingSite() {
+const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav?.classList.toggle('scrolled', window.scrollY > 40);
 });
@@ -74,9 +75,11 @@ async function playMusicOnce() {
   }
 }
 
-setMusicVolume(Number.isFinite(savedVolume) ? savedVolume : musicVolume?.value ?? 70);
+setMusicVolume(Number.isFinite(savedVolume) ? savedVolume : musicVolume?.value ?? 25);
 
-window.addEventListener('scroll', playMusicOnce, { once: true, passive: true });
+['scroll', 'wheel', 'touchstart', 'touchmove', 'pointerdown', 'keydown'].forEach((eventName) => {
+  window.addEventListener(eventName, playMusicOnce, { once: true, passive: true });
+});
 document.addEventListener('click', playMusicOnce, { once: true });
 musicControl?.addEventListener('click', (event) => event.stopPropagation());
 musicVolume?.addEventListener('input', (event) => {
@@ -97,26 +100,44 @@ audio?.addEventListener('play', syncMusicButton);
 audio?.addEventListener('pause', syncMusicButton);
 syncMusicButton();
 
-const storyGrid = document.querySelector('.story-grid');
-const galleryButtons = document.querySelectorAll('.gallery-option');
-galleryButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const layout = button.dataset.galleryLayout;
-    storyGrid?.setAttribute('data-layout', layout);
-    galleryButtons.forEach((option) => {
-      const active = option === button;
-      option.classList.toggle('active', active);
-      option.setAttribute('aria-pressed', String(active));
+document.querySelectorAll('[data-video-src]').forEach((frame) => {
+  const playButton = frame.querySelector('.video-play');
+  playButton?.addEventListener('click', async (event) => {
+    event.stopPropagation();
+    if (audio && !audio.paused) {
+      audio.pause();
+      syncMusicButton();
+    }
+
+    const video = document.createElement('video');
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = 'none';
+    video.poster = frame.dataset.videoPoster || '';
+    video.src = frame.dataset.videoSrc;
+    video.setAttribute('aria-label', 'Save-the-date video');
+    video.addEventListener('play', () => {
+      if (audio && !audio.paused) {
+        audio.pause();
+        syncMusicButton();
+      }
     });
-  });
+    video.addEventListener('error', () => {
+      frame.classList.add('video-error');
+      frame.insertAdjacentHTML('beforeend', '<p class="video-error-message">The video could not play in this browser.</p>');
+    }, { once: true });
+    frame.replaceChildren(video);
+    await video.play().catch(() => {
+      video.controls = true;
+    });
+  }, { once: true });
 });
 
-const storyImages = Array.from(document.querySelectorAll('.story-grid .photo-frame img'));
+const storyImages = Array.from(document.querySelectorAll('.editorial-story .editorial-frame img, .editorial-story .editorial-panorama img'));
 let lightboxIndex = 0;
 storyImages.forEach((img, index) => {
-  const frame = img.closest('.photo-frame');
+  const frame = img.closest('.editorial-frame, .editorial-panorama');
   frame.setAttribute('tabindex', '0');
-  frame.setAttribute('role', 'button');
   frame.setAttribute('aria-label', `View photo ${index + 1}`);
   frame.addEventListener('click', () => openLightbox(index));
   frame.addEventListener('keydown', (event) => {
@@ -166,3 +187,11 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') moveLightbox(-1);
   if (event.key === 'ArrowRight') moveLightbox(1);
 });
+
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWeddingSite, { once: true });
+} else {
+  initWeddingSite();
+}
