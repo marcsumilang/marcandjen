@@ -26,8 +26,8 @@ import '../styles/global.css';
     <img src="/mj-wedding-logo.svg" alt="Marc and Jen wedding monogram">
   </a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#save-the-date">Save The Date</a></li>
     <li><a href="#story">Our Story</a></li>
+    <li><a href="#save-the-date">Save The Date</a></li>
     <li><a href="#details">The Details</a></li>
     <li><a href="#entourage">Entourage</a></li>
     <li><a href="#attire">Attire</a></li>
@@ -76,23 +76,6 @@ import '../styles/global.css';
 
 <main>
 
-  <!-- ============ SAVE THE DATE ============ -->
-  <section class="section save-date-section" id="save-the-date" aria-labelledby="save-date-title">
-    <div class="wrap">
-      <div class="eyebrow reveal"><span class="rule"></span><span class="label">Save The Date</span><span class="rule"></span></div>
-      <h2 class="display-title center reveal" id="save-date-title">Our Save the Date</h2>
-      <p class="story-text center reveal">A glimpse of the day Marc and Jen are inviting you to remember with them.</p>
-
-      <div class="video-frame save-date-video reveal" data-video-src="/marc-jenny-save-the-date.mp4" data-video-poster="/images/editorial/editorial-15.jpg">
-        <button class="video-play" type="button" aria-label="Play save-the-date video">
-          <img src="/images/editorial/editorial-15.jpg" alt="Marc and Jen save-the-date video poster" loading="lazy">
-          <span class="video-play-icon" aria-hidden="true"></span>
-          <span class="video-play-text">Play Save the Date</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ PRENUPTIAL EDITORIAL ============ -->
   <section class="section editorial-story" id="story" aria-labelledby="editorial-title">
     <div class="editorial-cover reveal">
@@ -116,15 +99,14 @@ import '../styles/global.css';
         <span>The White Series</span>
       </div>
 
-      <div class="editorial-grid editorial-grid-featured">
-        <button class="editorial-frame editorial-feature" type="button"><img src="/images/editorial/editorial-02.jpg" alt="Marc and Jen beside a lamppost"></button>
-        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-03.jpg" alt="Marc and Jen evening outdoor portrait"></button>
-        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-04.jpg" alt="Marc and Jen walking by the pool"></button>
-      </div>
-
-      <div class="editorial-grid editorial-grid-halves">
-        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-05.jpg" alt="Marc and Jen rose kiss moment"></button>
-        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-06.jpg" alt="Marc and Jen picnic evening session"></button>
+      <div class="editorial-gallery">
+        <button class="editorial-frame editorial-gallery-main" type="button"><img src="/images/editorial/editorial-02.jpg" alt="Marc and Jen beside a lamppost"></button>
+        <div class="editorial-gallery-line">
+          <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-03.jpg" alt="Marc and Jen evening outdoor portrait"></button>
+          <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-04.jpg" alt="Marc and Jen walking by the pool"></button>
+          <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-05.jpg" alt="Marc and Jen rose kiss moment"></button>
+          <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-06.jpg" alt="Marc and Jen picnic evening session"></button>
+        </div>
       </div>
     </div>
 
@@ -146,9 +128,11 @@ import '../styles/global.css';
           <h3>The ring.<br>The promise.<br>The beginning.</h3>
           <p>A promise held close, then shared with the world. In this small, shining detail is the certainty of two people ready to begin as one.</p>
         </div>
-        <div class="editorial-grid editorial-grid-halves">
-          <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-07.jpg" alt="Jen displaying her engagement ring"></button>
-          <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-08.jpg" alt="Jen's engagement ring on Marc's shoulder"></button>
+        <div class="editorial-gallery editorial-gallery-compact">
+          <button class="editorial-frame editorial-gallery-main" type="button"><img src="/images/editorial/editorial-07.jpg" alt="Jen displaying her engagement ring"></button>
+          <div class="editorial-gallery-line">
+            <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-08.jpg" alt="Jen's engagement ring on Marc's shoulder"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -165,33 +149,50 @@ import '../styles/global.css';
         <h3>Light, laughter, and the quiet look of home.</h3>
       </div>
 
-      <div class="editorial-grid editorial-grid-reverse">
-        <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-09.jpg" alt="Marc and Jen on a park bench"></button>
-        <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-10.jpg" alt="Marc and Jen bench golden hour portrait"></button>
-        <button class="editorial-frame editorial-feature editorial-hero-card" type="button"><img src="/images/editorial/editorial-11.jpg" alt="Marc and Jen swing moment"></button>
-      </div>
-
-      <div class="editorial-grid editorial-grid-thirds">
-        <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-12.jpg" alt="Marc and Jen poolside portrait"></button>
-        <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-13.jpg" alt="Marc and Jen park swing series"></button>
-        <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-14.jpg" alt="Marc and Jen tender pool moment"></button>
+      <div class="editorial-gallery">
+        <button class="editorial-frame editorial-gallery-main" type="button"><img src="/images/editorial/editorial-11.jpg" alt="Marc and Jen swing moment"></button>
+        <div class="editorial-gallery-line">
+          <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-09.jpg" alt="Marc and Jen on a park bench"></button>
+          <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-10.jpg" alt="Marc and Jen bench golden hour portrait"></button>
+          <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-12.jpg" alt="Marc and Jen poolside portrait"></button>
+          <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-13.jpg" alt="Marc and Jen park swing series"></button>
+          <button class="editorial-frame editorial-feature-card" type="button"><img src="/images/editorial/editorial-14.jpg" alt="Marc and Jen tender pool moment"></button>
+        </div>
       </div>
     </div>
 
-    <button class="editorial-panorama reveal" type="button">
-      <img src="/images/editorial/editorial-15.jpg" alt="Marc giving Jen a piggyback ride">
-      <span>Joy, unscripted</span>
-    </button>
-
-    <div class="wrap editorial-strip reveal" aria-label="Editorial closing photos">
-      <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-16.jpg" alt="Marc and Jen prenuptial detail photo"></button>
-      <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-17.jpg" alt="Marc and Jen prenuptial candid photo"></button>
-      <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-18.jpg" alt="Marc and Jen prenuptial portrait detail"></button>
-      <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-19.jpg" alt="Marc and Jen prenuptial closing portrait"></button>
+    <div class="wrap editorial-gallery editorial-closing-gallery reveal" aria-label="Editorial closing photos">
+      <button class="editorial-panorama editorial-gallery-main" type="button">
+        <img src="/images/editorial/editorial-15.jpg" alt="Marc giving Jen a piggyback ride">
+        <span>Joy, unscripted</span>
+      </button>
+      <div class="editorial-gallery-line">
+        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-16.jpg" alt="Marc and Jen prenuptial detail photo"></button>
+        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-17.jpg" alt="Marc and Jen prenuptial candid photo"></button>
+        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-18.jpg" alt="Marc and Jen prenuptial portrait detail"></button>
+        <button class="editorial-frame" type="button"><img src="/images/editorial/editorial-19.jpg" alt="Marc and Jen prenuptial closing portrait"></button>
+      </div>
     </div>
 
     <div class="wrap editorial-closing">
       <p class="story-text center reveal">With grateful hearts and steadfast love, Marc and Jen step into forever: two lives joined, one promise made, and a new beginning they will carry together.</p>
+    </div>
+  </section>
+
+  <!-- ============ SAVE THE DATE ============ -->
+  <section class="section save-date-section" id="save-the-date" aria-labelledby="save-date-title">
+    <div class="wrap">
+      <div class="eyebrow reveal"><span class="rule"></span><span class="label">Save The Date</span><span class="rule"></span></div>
+      <h2 class="display-title center reveal" id="save-date-title">Our Save the Date</h2>
+      <p class="story-text center reveal">A glimpse of the day Marc and Jen are inviting you to remember with them.</p>
+
+      <div class="video-frame save-date-video reveal" data-video-src="/marc-jenny-save-the-date.mp4" data-video-poster="/images/editorial/editorial-15.jpg">
+        <button class="video-play" type="button" aria-label="Play save-the-date video">
+          <img src="/images/editorial/editorial-15.jpg" alt="Marc and Jen save-the-date video poster" loading="lazy">
+          <span class="video-play-icon" aria-hidden="true"></span>
+          <span class="video-play-text">Play Save the Date</span>
+        </button>
+      </div>
     </div>
   </section>
 

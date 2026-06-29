@@ -43,7 +43,8 @@ const audio = document.getElementById('wedding-audio');
 const musicToggle = document.getElementById('music-toggle');
 const musicControl = document.getElementById('music-control');
 const musicVolume = document.getElementById('music-volume');
-const savedVolume = Number(localStorage.getItem('weddingMusicVolume'));
+const savedVolumeRaw = localStorage.getItem('weddingMusicVolume');
+const savedVolume = savedVolumeRaw === null ? NaN : Number(savedVolumeRaw);
 let musicAttempted = false;
 
 function setMusicVolume(value) {
@@ -68,6 +69,7 @@ async function playMusicOnce() {
   musicAttempted = true;
   try {
     await audio.play();
+    removeMusicStartListeners();
   } catch {
     musicAttempted = false;
   } finally {
@@ -75,12 +77,22 @@ async function playMusicOnce() {
   }
 }
 
-setMusicVolume(Number.isFinite(savedVolume) ? savedVolume : musicVolume?.value ?? 25);
+function addMusicStartListeners() {
+  ['scroll', 'wheel', 'touchstart', 'touchmove', 'pointerdown', 'keydown'].forEach((eventName) => {
+    window.addEventListener(eventName, playMusicOnce, { passive: true });
+  });
+  document.addEventListener('click', playMusicOnce);
+}
 
-['scroll', 'wheel', 'touchstart', 'touchmove', 'pointerdown', 'keydown'].forEach((eventName) => {
-  window.addEventListener(eventName, playMusicOnce, { once: true, passive: true });
-});
-document.addEventListener('click', playMusicOnce, { once: true });
+function removeMusicStartListeners() {
+  ['scroll', 'wheel', 'touchstart', 'touchmove', 'pointerdown', 'keydown'].forEach((eventName) => {
+    window.removeEventListener(eventName, playMusicOnce);
+  });
+  document.removeEventListener('click', playMusicOnce);
+}
+
+setMusicVolume(Number.isFinite(savedVolume) && savedVolume > 0 ? savedVolume : musicVolume?.value ?? 25);
+addMusicStartListeners();
 musicControl?.addEventListener('click', (event) => event.stopPropagation());
 musicVolume?.addEventListener('input', (event) => {
   setMusicVolume(event.target.value);
