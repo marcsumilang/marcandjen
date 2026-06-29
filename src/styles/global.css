@@ -167,10 +167,10 @@
   .hero-verse{max-width:30ch;margin:var(--sp-3) auto 0;font-style:italic;color:var(--taupe);font-size:1.05rem;}
   .hero-verse cite{display:block;font-style:normal;font-family:var(--font-label);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;margin-top:0.5rem;color:var(--gold-deep);}
 
-  .countdown{display:flex;justify-content:center;gap:clamp(0.6rem,2vw,1.4rem);margin-top:var(--sp-4);}
-  .countdown .cell{min-width:64px;}
+  .countdown{display:flex;justify-content:center;gap:clamp(1rem,3vw,2rem);margin-top:var(--sp-4);}
+  .countdown .cell{min-width:78px;text-align:center;}
   .countdown .num{font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--umber);}
-  .countdown .unit{font-family:var(--font-label);font-size:0.62rem;line-height:1.2;letter-spacing:0.18em;text-transform:uppercase;color:var(--taupe);}
+  .countdown .unit{font-family:var(--font-label);font-size:0.62rem;line-height:1.2;letter-spacing:0.14em;text-transform:uppercase;color:var(--taupe);white-space:nowrap;}
 
   .scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;}
   .scroll-cue span{font-family:var(--font-label);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--taupe);}
@@ -180,7 +180,8 @@
   @media (max-width:680px), (max-height:720px){
     .hero{padding-bottom:2rem;}
     .countdown{flex-wrap:wrap;row-gap:0.8rem;margin-top:var(--sp-3);}
-    .scroll-cue{position:static;transform:none;margin-top:1.15rem;}
+    .countdown .cell{min-width:72px;}
+    .scroll-cue{position:static;transform:none;margin-top:1.8rem;}
   }
 
   /* ============ DETAILS ============ */
@@ -403,6 +404,14 @@
   }
 
   .story-text{max-width:56ch;margin:0 auto;font-style:italic;color:var(--ink);}
+
+  .save-date-section{
+    background:linear-gradient(180deg, rgba(246,240,228,.96), rgba(252,248,239,.9) 48%, rgba(246,240,228,.94));
+    border-bottom:1px solid rgba(173,138,82,.18);
+  }
+  .save-date-section .display-title{margin-bottom:var(--sp-2);}
+  .save-date-section .story-text{margin-bottom:var(--sp-3);}
+  .save-date-video{margin-top:0;}
 
   .video-frame{
     margin-top:var(--sp-5);border-radius:18px;overflow:hidden;border:1px solid var(--line);
