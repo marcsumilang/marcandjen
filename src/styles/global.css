@@ -397,6 +397,15 @@
     margin:0;padding:.55rem .8rem;border-radius:999px;background:rgba(252,248,239,.92);
     color:var(--umber);font-family:var(--font-label);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
   }
+  @media (max-width:780px){
+    .save-date-video{aspect-ratio:auto;background:var(--paper);}
+    .save-date-video video{
+      width:100%;height:auto;max-height:78svh;object-fit:contain;object-position:center center;background:#000;
+    }
+    .save-date-video .video-play,.save-date-video .video-play img{
+      height:auto;object-fit:contain;object-position:center center;
+    }
+  }
   /* ============ ATTIRE / GIFT ============ */
   .finer-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--sp-5);margin-top:var(--sp-4);align-items:start;}
   @media (max-width:780px){ .finer-grid{grid-template-columns:1fr;gap:var(--sp-4);} }
