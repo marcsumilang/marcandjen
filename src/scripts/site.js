@@ -122,26 +122,88 @@ document.querySelectorAll('[data-video-src]').forEach((frame) => {
     }
 
     const video = document.createElement('video');
+    const shouldOpenFullscreen = window.matchMedia('(max-width: 860px), (pointer: coarse)').matches;
+    video.className = shouldOpenFullscreen ? 'save-date-native-video' : 'video-js vjs-default-skin vjs-big-play-centered';
     video.controls = true;
-    video.playsInline = true;
+    video.playsInline = !shouldOpenFullscreen;
     video.preload = 'none';
     video.poster = frame.dataset.videoPoster || '';
-    video.src = frame.dataset.videoSrc;
+    if (!shouldOpenFullscreen) {
+      video.setAttribute('data-setup', '{}');
+    }
     video.setAttribute('aria-label', 'Save-the-date video');
-    video.addEventListener('play', () => {
+    const source = document.createElement('source');
+    source.src = frame.dataset.videoSrc;
+    source.type = 'video/mp4';
+    video.append(source);
+    const pauseMusic = () => {
       if (audio && !audio.paused) {
         audio.pause();
         syncMusicButton();
       }
-    });
+    };
+    video.addEventListener('play', pauseMusic);
     video.addEventListener('error', () => {
       frame.classList.add('video-error');
       frame.insertAdjacentHTML('beforeend', '<p class="video-error-message">The video could not play in this browser.</p>');
     }, { once: true });
     frame.replaceChildren(video);
-    await video.play().catch(() => {
-      video.controls = true;
-    });
+    if (shouldOpenFullscreen) {
+      const openFullscreen = () => {
+        if (typeof video.webkitEnterFullscreen === 'function') {
+          video.webkitEnterFullscreen();
+          return;
+        }
+        if (typeof video.requestFullscreen === 'function') {
+          video.requestFullscreen().catch(() => {});
+        } else if (typeof frame.requestFullscreen === 'function') {
+          frame.requestFullscreen().catch(() => {});
+        }
+      };
+
+      openFullscreen();
+      await video.play().catch(() => {
+        video.controls = true;
+      });
+    } else if (window.videojs) {
+      const player = window.videojs(video, {
+        fluid: false,
+        fill: true,
+        controlBar: {
+          pictureInPictureToggle: false,
+        },
+      });
+      player.ready(() => {
+        player.play().catch(() => {});
+      });
+      player.on('play', pauseMusic);
+    } else {
+      await video.play().catch(() => {
+        video.controls = true;
+      });
+    }
+  }, { once: true });
+});
+
+document.querySelectorAll('.save-date-video > video').forEach((video) => {
+  video.addEventListener('play', () => {
+    if (audio && !audio.paused) {
+      audio.pause();
+      syncMusicButton();
+    }
+  });
+
+  video.addEventListener('click', () => {
+    const shouldOpenFullscreen = window.matchMedia('(max-width: 860px), (pointer: coarse)').matches;
+    if (!shouldOpenFullscreen) return;
+
+    if (typeof video.webkitEnterFullscreen === 'function') {
+      video.webkitEnterFullscreen();
+      return;
+    }
+    if (typeof video.requestFullscreen === 'function') {
+      video.requestFullscreen().catch(() => {});
+    }
   }, { once: true });
 });
 
